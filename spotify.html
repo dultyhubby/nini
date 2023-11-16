@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Login</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column; /* Stack elements vertically */
+            text-align: center; /* Center-align text */
+            background-color: #f4f4f4; /* Background color */
+        }
+
+        #login-button {
+            background: #1db954; /* Spotify green */
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background 0.3s ease; /* Smooth transition */
+        }
+
+        #login-button:hover {
+            background: #179846; /* Darker green on hover */
+        }
+
+        #title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333; /* Dark text color */
+        }
+
+        #spotify-logo {
+            max-width: 200px;
+            max-height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="title">Welcome to Spotify</div>
+
+    <button id="login-button">
+        <img src="spotify-logo.png" alt="Spotify Logo" id="spotify-logo">
+        <br>
+
+    </button>
+
+    <script>
+        document.getElementById('login-button').addEventListener('click', function() {
+            // Replace 'YOUR_CLIENT_ID' with your Spotify App's Client ID
+            const clientId = 'YOUR_CLIENT_ID';
+
+            // Specify the Spotify API endpoint for user authorization
+            const redirectUri = 'http://localhost:3000'; // Replace with your redirect URI
+
+            // Specify the necessary Spotify scopes (permissions)
+            const scopes = 'user-read-private user-read-email';
+
+            // Create the authorization URL
+            const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scopes)}&response_type=token`;
+
+            // Redirect the user to the Spotify login page
+            window.location.href = authUrl;
+        });
+    </script>
+
+</body>
+</html>
